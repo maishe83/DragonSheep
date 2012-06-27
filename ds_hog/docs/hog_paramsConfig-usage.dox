@@ -1,0 +1,8 @@
+\subsubsection usage Usage
+\verbatim
+<node name="ds_hog" pkg="ds_hog" type="ds_hog">
+  <param name="factorVal" type="double" value="0.0" />
+  <param name="rollComp" type="bool" value="False" />
+</node>
+\endverbatim
+

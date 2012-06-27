@@ -1,0 +1,7 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~factorVal" : \b [double] example min: -1.0, default: 0.0, max: 2.0
+- \b "~rollComp" : \b [bool] Roll compensation min: False, default: False, max: True
+

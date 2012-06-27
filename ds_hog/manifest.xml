@@ -8,6 +8,25 @@
   <license>BSD</license>
   <review status="unreviewed" notes=""/>
   <url>http://ros.org/wiki/ds_hog</url>
+  
+  <depend package="roscpp"/>
+  <depend package="rospy"/>
+  <depend package="dynamic_reconfigure"/>
+
+  <depend package="sensor_msgs"/>
+  <depend package="std_msgs"/>
+
+  <depend package="opencv2"/>
+  <depend package="cv_bridge"/>
+  <depend package="image_transport"/>
+  
+  <depend package="geometry_msgs"/>
+  <depend package="tf"/>
+  <depend package="visualization_msgs"/>
+
+    <depend package="ds_control"/>
+    <depend package="ds_gl"/>
+  
 
 </package>
 
