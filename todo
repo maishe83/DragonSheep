@@ -1,0 +1,4 @@
+1.) refactor the shit out of everything
+    --> no structs, all classes
+    --> one class = one src file
+    --> one code style (

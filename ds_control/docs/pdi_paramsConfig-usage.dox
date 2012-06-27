@@ -1,0 +1,18 @@
+\subsubsection usage Usage
+\verbatim
+<node name="visnav_3" pkg="ds_control" type="visnav_3">
+  <param name="c_prop_trans" type="double" value="1.0" />
+  <param name="c_int_trans" type="double" value="0.01" />
+  <param name="c_deriv_trans" type="double" value="1.0" />
+  <param name="c_prop_yaw" type="double" value="2.0" />
+  <param name="c_int_yaw" type="double" value="0.0" />
+  <param name="c_deriv_yaw" type="double" value="0.0" />
+  <param name="ControllerOn" type="bool" value="False" />
+  <param name="FlyCircle" type="bool" value="True" />
+  <param name="Radius" type="double" value="2.0" />
+  <param name="Speed" type="double" value="0.0" />
+  <param name="Heading" type="double" value="90.0" />
+  <param name="Altitude" type="double" value="1.0" />
+</node>
+\endverbatim
+

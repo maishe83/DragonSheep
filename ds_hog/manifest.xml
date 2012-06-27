@@ -1,0 +1,14 @@
+<package>
+  <description brief="ds_hog">
+
+     ds_hog
+
+  </description>
+  <author>Oliver Dunkley</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/ds_hog</url>
+
+</package>
+
+

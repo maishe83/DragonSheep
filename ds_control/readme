@@ -1,0 +1,19 @@
+
+
+
+sudo bash
+rosrun ps3joy sixpair
+rosrun ps3joy ps3joy.py
+sudo chmod a+rw /dev/input/js2
+ls -l /dev/input/js0
+
+roslaunch ardrone_joystick teleop.launch
+
+rosrun rviz rviz
+rosrun dynamic_reconfigure reconfigure_gui
+rosrun image_view image_view image:=/ardrone/image_raw
+
+
+rosrun ardrone_brown ardrone_driver
+rosrun 
+

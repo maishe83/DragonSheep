@@ -8,4 +8,9 @@ bin/
 lib/
 msg_gen/
 srv_gen/
+*.cfgc
 *~
+ds_control/cfg/cpp
+ds_control/src/ds_control
+CMakeLists.txt.user
+

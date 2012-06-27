@@ -1,0 +1,17 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~c_prop_trans" : \b [double] const for P-part of translation min: 0.0, default: 1.0, max: 2.0
+- \b "~c_int_trans" : \b [double] const for I-part of translation min: 0.0, default: 0.01, max: 2.0
+- \b "~c_deriv_trans" : \b [double] const for D-part of translation min: 0.0, default: 1.0, max: 2.0
+- \b "~c_prop_yaw" : \b [double] const for P-part of translation min: 0.0, default: 2.0, max: 2.0
+- \b "~c_int_yaw" : \b [double] const for I-part of translation min: 0.0, default: 0.0, max: 2.0
+- \b "~c_deriv_yaw" : \b [double] const for D-part of translation min: 0.0, default: 0.0, max: 2.0
+- \b "~ControllerOn" : \b [bool] Allow controller to send commands min: False, default: False, max: True
+- \b "~FlyCircle" : \b [bool] Use PID Controller to fly a circle min: False, default: True, max: True
+- \b "~Radius" : \b [double] Radius of circle to fly min: 1.0, default: 2.0, max: 6.0
+- \b "~Speed" : \b [double] Rate at which to fly circle min: -1.0, default: 0.0, max: 1.0
+- \b "~Heading" : \b [double] Goal Heading relative to circle center min: -180.0, default: 90.0, max: 180.0
+- \b "~Altitude" : \b [double] Goal Altitude min: 0.0, default: 1.0, max: 10.0
+

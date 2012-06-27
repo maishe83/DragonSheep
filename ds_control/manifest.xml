@@ -1,0 +1,28 @@
+<package>
+  <description brief="ds_control">
+
+     ds_control
+
+  </description>
+  <author>Tom + Ollie + Michael of team DRAGON SHEEP</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/ds_control</url>
+  <depend package="sensor_msgs"/>
+  <depend package="geometry_msgs"/>
+  <depend package="roscpp"/>
+  <depend package="rospy"/>
+  <depend package="tf"/>
+  <depend package="visualization_msgs"/>
+  <!--depend package="ar_recog"/-->  
+  <depend package="joy" />
+  <depend package="ardrone_joystick" />
+  <depend package="dynamic_reconfigure" />
+
+  <rosdep name="eigen" />
+
+
+
+</package>
+
+
