@@ -14,28 +14,29 @@
 
 #include "ds_control/marker.h"
 
-struct ExtendedKalmanFilter {
+class ExtendedKalmanFilter {
 
-    Eigen::Vector3f state; // x, y, yaw
-    Eigen::Matrix3f sigma; // uncertainty of state
+public:
 
-    Eigen::Matrix3f Q; // process noise
-    Eigen::Matrix3f R; // observation noise
+    // x, y, yaw
+    Eigen::Vector3f state;
+    // uncertainty of state
+    Eigen::Matrix3f sigma;
 
-    void predictionStep(const Eigen::Vector3f& odometry); // x_{t+1} = g(x_t,u) and update uncertainty
-    void correctionStep(const Eigen::Vector3f& measurement, const Eigen::Vector3f& global_marker_pose);  // compare expected and measured values, update state and uncertainty
+    // process noise
+    Eigen::Matrix3f Q;
+    // observation noise
+    Eigen::Matrix3f R;
 
-    void printState(){
-        std::cout << "kalman state: " << state(0) << "  " << state(1) << " " << state(2)/M_PI*180 << std::endl;
-    }
+    // x_{t+1} = g(x_t,u) and update uncertainty
+    void predictionStep(const Eigen::Vector3f& odometry);
 
-    void initFilter(){
-        state =  Eigen::Vector3f(0,0,0);
-        sigma = Eigen::Matrix3f::Zero(); sigma(0,0) = sigma(1,1) = 1; sigma(2,2) = 1;
-        Q = Eigen::Matrix3f::Zero();     Q(0,0) = Q(1,1) = 0.002; Q(2,2) = 0.00002;
-        R = Eigen::Matrix3f::Zero();     R(0,0) = R(1,1) = 0.01; R(2,2) = 0.0001;
-    }
+    // compare expected and measured values, update state and uncertainty
+    void correctionStep(const Eigen::Vector3f& measurement,
+                        const Eigen::Vector3f& global_marker_pose);
 
+    void printState();
+    void initFilter();
 
     EKF_marker marker;
 
@@ -43,8 +44,6 @@ struct ExtendedKalmanFilter {
 
     Eigen::MatrixXf createTestOdometry();
     Eigen::MatrixXf createTestMeasurements();
-
-
 };
 
 

@@ -19,7 +19,19 @@
 #include "geometry_msgs/Point.h"
 
 
-struct Ardrone_localizer {
+class Ardrone_localizer {
+
+public:
+
+    Ardrone_localizer();
+
+    float getX();
+    float getY();
+    float getYaw();
+    float getHeight();
+
+    void tagCB(const ds_control::TagsConstPtr& tag_msg);
+    void navCB(const ds_control::NavdataConstPtr& nav_msg);
 
     ros::NodeHandle nh_;
     ros::Subscriber sub_nav;
@@ -30,32 +42,25 @@ struct Ardrone_localizer {
 
     ExtendedKalmanFilter kalman_filter;
 
-    float getX(){return kalman_filter.state(0);}
-    float getY(){return kalman_filter.state(1);}
-    float getYaw(){return kalman_filter.state(2);}
-    float getHeight(){return z;}
-
-    EKF_marker ekf_marker;   // visualization for the EKF-state and covariance
+    // visualization for the EKF-state and covariance
+    EKF_marker ekf_marker;
 
     drone_marker markers;
+
     tf::Transform transform;
 
     ros::Time last_stamp;
     bool got_first_nav;
-
     float mean_height;
     int msg_cnt;
-
-    double last_yaw;
-
-
-    void tagCB(const ds_control::TagsConstPtr& tag_msg);
-    void navCB(const ds_control::NavdataConstPtr& nav_msg);
-
-    Ardrone_localizer();
+    float last_yaw;
 
 private:
-    float x,y,z,phi;
+
+    float x;
+    float y;
+    float z;
+    float phi;
 
 
 };

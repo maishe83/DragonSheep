@@ -12,7 +12,25 @@ using namespace std;
 using namespace Eigen;
 
 
-void EKF_marker::publish_last_n_states(int n){
+EKF_marker::EKF_marker() {
+    pub_markers = nh_.advertise<visualization_msgs::Marker>("ekf_marker", 1000);
+}
+
+void EKF_marker::addFilterState(Eigen::Vector3f mu, Eigen::Matrix3f sigma, float height) {
+    mus.push_back(mu);
+    sigmas.push_back(sigma);
+    heights.push_back(height);
+}
+
+void EKF_marker::init() {
+    mus.clear();
+    sigmas.clear();
+    heights.clear();
+}
+
+
+
+void EKF_marker::publish_last_n_states(int n) {
 
     visualization_msgs::MarkerArray marker_list;
     visualization_msgs::Marker marker;
@@ -89,7 +107,20 @@ void EKF_marker::publish_last_n_states(int n){
 
 
 
-void drone_marker::publish_markers(){
+drone_marker::drone_marker() {
+    pub_markers = nh_.advertise<visualization_msgs::MarkerArray>( "poses_array", 0 );
+}
+
+void drone_marker::addMarkerPose(const tf::StampedTransform& trafo) {
+    trafos.push_back(trafo);
+}
+
+void drone_marker::init() {
+    trafos.clear();
+}
+
+
+void drone_marker::publish_markers() {
 
     if (pub_markers.getNumSubscribers() == 0)
         return;

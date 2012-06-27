@@ -26,21 +26,17 @@ Ardrone_localizer::Ardrone_localizer(){
     pub_state = nh_.advertise<geometry_msgs::Point>("/quadcopter_state",10);
 }
 
-
 void Ardrone_localizer::tagCB(const ds_control::TagsConstPtr& tag_msg){
-
-
 
     int tag_cnt = tag_msg->tag_count;
 
     if (tag_cnt == 0) return;
 
-    for (int i=0; i<tag_cnt; ++i){
+    for (int i = 0; i < tag_cnt; ++i){
         // ROS_INFO("Found tag  %i (cf: %.3f)", tag_msg->tags[i].id, tag_msg->tags[i].cf);
     }
 
-
-    for (int i=0; i<tag_cnt; ++i){
+    for (int i = 0; i < tag_cnt; ++i){
 
         ds_control::Tag tag = tag_msg->tags[i];
 
@@ -68,7 +64,7 @@ void Ardrone_localizer::tagCB(const ds_control::TagsConstPtr& tag_msg){
             // ROS_INFO("Found beta marker at %f %f %.1f", measurement(0),measurement(1),measurement(2)/M_PI*180);
             kalman_filter.correctionStep(measurement, beta_global_pose);
         }
-        else{
+        else {
             //  ROS_INFO("Found zeta marker at %f %f %.1f", measurement(0),measurement(1),measurement(2)/M_PI*180);
             kalman_filter.correctionStep(measurement, zeta_global_pose);
         }
@@ -81,13 +77,12 @@ void Ardrone_localizer::tagCB(const ds_control::TagsConstPtr& tag_msg){
 
 
 
-void Ardrone_localizer::navCB(const ds_control::NavdataConstPtr& nav_msg){
+void Ardrone_localizer::navCB(const ds_control::NavdataConstPtr& nav_msg) {
 
 
     // float bat = nav_msg->batteryPercent;
     // if (bat < 25)
     //  ROS_WARN("low battery: %f %%", bat);
-
 
     transform.setOrigin( tf::Vector3(x,y,z) );
     transform.setRotation( tf::Quaternion(nav_msg->rotZ/180*M_PI, nav_msg->rotY/180*M_PI, nav_msg->rotX/180*M_PI) );
@@ -136,3 +131,21 @@ void Ardrone_localizer::navCB(const ds_control::NavdataConstPtr& nav_msg){
     markers.publish_markers();
 
 }
+
+float Ardrone_localizer::getX() {
+    return kalman_filter.state(0);
+}
+
+float Ardrone_localizer::getY() {
+    return kalman_filter.state(1);
+}
+
+float Ardrone_localizer::getYaw() {
+    return kalman_filter.state(2);
+}
+
+float Ardrone_localizer::getHeight() {
+    return z;
+}
+
+

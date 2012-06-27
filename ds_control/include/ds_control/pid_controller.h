@@ -10,16 +10,16 @@
 #include <ros/ros.h>
 #include <limits>
 
-struct PID_Controller {
+class PID_Controller {
 
+public:
 
     float c_proportional;
     float c_integral;
     float c_derivative;
 
     // calculation of new command
-    float getCommand(float error, ros::Time current);
-
+    float getCommand(const float error, const ros::Time current);
 
     PID_Controller();
 
@@ -31,8 +31,6 @@ private:
 
     // useful for i-part
     float error_sum;
-
-
 };
 
 

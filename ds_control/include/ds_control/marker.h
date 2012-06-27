@@ -16,20 +16,15 @@
 #include "visualization_msgs/MarkerArray.h"
 #include <Eigen/Core>
 
-struct drone_marker {
+class drone_marker {
+
+public:
 
     void publish_markers();
 
-    drone_marker(){
-        pub_markers = nh_.advertise<visualization_msgs::MarkerArray>( "poses_array", 0 );
-    }
-
-
-    void addMarkerPose(const tf::StampedTransform& trafo){
-        trafos.push_back(trafo);
-    }
-
-    void init(){trafos.clear();}
+    drone_marker();
+    void init();
+    void addMarkerPose(const tf::StampedTransform& trafo);
 
     std::vector<tf::StampedTransform> trafos;
 
@@ -40,20 +35,16 @@ struct drone_marker {
 };
 
 
-struct EKF_marker {
+class EKF_marker {
+
+public:
 
     void publish_last_n_states(int n = -1);
 
-    EKF_marker(){
-        pub_markers = nh_.advertise<visualization_msgs::Marker>( "ekf_marker", 1000);
-    }
+    EKF_marker();
 
-    void addFilterState(Eigen::Vector3f mu, Eigen::Matrix3f sigma, float height = 0){
-        mus.push_back(mu); sigmas.push_back(sigma); heights.push_back(height);
-    }
-
-    void init(){mus.clear(); sigmas.clear(); heights.clear();}
-
+    void init();
+    void addFilterState(Eigen::Vector3f mu, Eigen::Matrix3f sigma, float height = 0);
 
     ros::NodeHandle nh_;
     ros::Publisher pub_markers;

@@ -8,12 +8,16 @@
 
 #include "ds_control/pid_controller.h"
 
-PID_Controller::PID_Controller(){
-    c_proportional = c_integral = c_derivative = error_sum = 0;
-    last_error = std::numeric_limits<float>::max();
+PID_Controller::PID_Controller() :
+    last_time(),
+    c_proportional(0),
+    c_integral(0),
+    c_derivative(0),
+    error_sum(0),
+    last_error(std::numeric_limits<float>::max()) {
 }
 
-float PID_Controller::getCommand(float error, ros::Time current){
+float PID_Controller::getCommand(const float error, const ros::Time current) {
 
     float dt = (last_time-current).toSec();
 

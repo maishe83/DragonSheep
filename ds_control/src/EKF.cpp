@@ -11,6 +11,27 @@ using namespace std;
 using namespace Eigen;
 
 
+void ExtendedKalmanFilter::initFilter(){
+    state = Eigen::Vector3f(0,0,0);
+
+    sigma = Eigen::Matrix3f::Zero();
+    sigma(0,0) = sigma(1,1) = 1; sigma(2,2) = 1;
+
+    Q = Eigen::Matrix3f::Zero();
+    Q(0,0) = Q(1,1) = 0.002; Q(2,2) = 0.00002;
+
+    R = Eigen::Matrix3f::Zero();
+    R(0,0) = R(1,1) = 0.01; R(2,2) = 0.0001;
+}
+
+void ExtendedKalmanFilter::printState(){
+    std::cout << "kalman state: " <<
+                 state(0) << "  " <<
+                 state(1) << " " <<
+                 state(2)/M_PI*180 << std::endl;
+}
+
+
 // odometry:
 // x: distance travelled in local x-direction
 // y: distance travelled in local y-direction
