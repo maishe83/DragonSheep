@@ -18,50 +18,50 @@
 
 struct drone_marker {
 
- void publish_markers();
+    void publish_markers();
 
- drone_marker(){
-  pub_markers = nh_.advertise<visualization_msgs::MarkerArray>( "poses_array", 0 );
- }
+    drone_marker(){
+        pub_markers = nh_.advertise<visualization_msgs::MarkerArray>( "poses_array", 0 );
+    }
 
 
- void addMarkerPose(const tf::StampedTransform& trafo){
-  trafos.push_back(trafo);
- }
+    void addMarkerPose(const tf::StampedTransform& trafo){
+        trafos.push_back(trafo);
+    }
 
- void init(){trafos.clear();}
+    void init(){trafos.clear();}
 
- std::vector<tf::StampedTransform> trafos;
+    std::vector<tf::StampedTransform> trafos;
 
- ros::NodeHandle nh_;
- ros::Publisher pub_markers;
- tf::TransformBroadcaster br;
+    ros::NodeHandle nh_;
+    ros::Publisher pub_markers;
+    tf::TransformBroadcaster br;
 
 };
 
 
 struct EKF_marker {
 
- void publish_last_n_states(int n = -1);
+    void publish_last_n_states(int n = -1);
 
- EKF_marker(){
-   pub_markers = nh_.advertise<visualization_msgs::Marker>( "ekf_marker", 1000);
-  }
+    EKF_marker(){
+        pub_markers = nh_.advertise<visualization_msgs::Marker>( "ekf_marker", 1000);
+    }
 
- void addFilterState(Eigen::Vector3f mu, Eigen::Matrix3f sigma, float height = 0){
-  mus.push_back(mu); sigmas.push_back(sigma); heights.push_back(height);
- }
+    void addFilterState(Eigen::Vector3f mu, Eigen::Matrix3f sigma, float height = 0){
+        mus.push_back(mu); sigmas.push_back(sigma); heights.push_back(height);
+    }
 
- void init(){mus.clear(); sigmas.clear(); heights.clear();}
+    void init(){mus.clear(); sigmas.clear(); heights.clear();}
 
 
- ros::NodeHandle nh_;
- ros::Publisher pub_markers;
+    ros::NodeHandle nh_;
+    ros::Publisher pub_markers;
 
 private:
- std::vector<Eigen::Vector3f> mus;
- std::vector<Eigen::Matrix3f> sigmas;
- std::vector<float> heights;
+    std::vector<Eigen::Vector3f> mus;
+    std::vector<Eigen::Matrix3f> sigmas;
+    std::vector<float> heights;
 
 };
 

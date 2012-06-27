@@ -13,24 +13,24 @@
 struct PID_Controller {
 
 
-  float c_proportional;
-  float c_integral;
-  float c_derivative;
+    float c_proportional;
+    float c_integral;
+    float c_derivative;
 
-  // calculation of new command
-  float getCommand(float error, ros::Time current);
+    // calculation of new command
+    float getCommand(float error, ros::Time current);
 
 
-  PID_Controller();
+    PID_Controller();
 
 private:
 
-  // useful for d-part
-  ros::Time last_time;
-  float last_error;
-  
-  // useful for i-part
-  float error_sum; 
+    // useful for d-part
+    ros::Time last_time;
+    float last_error;
+
+    // useful for i-part
+    float error_sum;
 
 
 };
